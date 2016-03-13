@@ -1,6 +1,11 @@
 <?php 
+session_start();
 include 'konek.php';
 $hal = isset($_GET['hal'])?$_GET['hal']:"beranda";
+
+if (isset($_SESSION['username'])) {
+  header("Location: admin/index.php");
+}
 
  ?>
 <!DOCTYPE html>
@@ -26,8 +31,11 @@ $hal = isset($_GET['hal'])?$_GET['hal']:"beranda";
     padding: 20px;
   }
   .footer1{
-    background-color: #e6f7ff;
+    background-color: #000;
     text-align: center;
+    color: #fff;
+    padding: 5px;
+    padding-bottom:10px; 
   }
   .konten{
     margin-top: 50px;
@@ -72,7 +80,7 @@ $hal = isset($_GET['hal'])?$_GET['hal']:"beranda";
             <li><a href="index.php"><i class="glyphicon glyphicon-home"></i> Home</a></li>
             <li><a href="index.php?hal=art"><i class="glyphicon glyphicon-file"></i> Artikel</a></li>
             <li><a href="index.php?hal=kontak"><i class="glyphicon glyphicon-phone-alt"></i> Kontak Kami</a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-lock"></i> Masuk</a></li>
+            <li><a href="index.php?hal=masuk"><i class="glyphicon glyphicon-lock"></i> Masuk</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -98,6 +106,9 @@ switch ($hal) {
     break;
   case 'cari':
     include 'cari_artikel.php';
+    break;
+  case 'masuk':
+    include 'login.php';
     break;
   
   default:
@@ -153,3 +164,8 @@ $(document).ready(function () {
 });
 </script>
 </html>
+<script type="text/javascript">
+  <?php if (isset($_GET['error'])) {
+    ?>alert("username atau password salah");<?
+  }; ?>
+</script>

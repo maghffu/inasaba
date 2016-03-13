@@ -42,7 +42,6 @@
 				<div class="panel-body">
 					<table class="table table-hover">
 						<?php 
-						$id = $_GET['id'];
 						$query = "select * from artikel order by tanggal_posting desc limit 7";
 						$sql = $koneksi->prepare($query);
 						$sql->execute();	           
