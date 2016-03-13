@@ -76,10 +76,12 @@ $result = $sql->fetchAll();
 		</div>
 		<div class="col-md-4">
 			<?php 
-			$idk = $_POST['id_kategori'];
-			$jud = $_POST['judul'];
-			$isi = $_POST['isi'];
-			$tgl =  date('Y-m-d h:i:s');
+			if (isset($_POST['id_kategori'])) {
+				$idk = $_POST['id_kategori'];
+				$jud = $_POST['judul'];
+				$isi = $_POST['isi'];
+				$tgl =  date('Y-m-d h:i:s');
+			}
 			if (!empty($jud) && !empty($isi) ) {
 				$query = "insert into artikel values('','".$jud."','".$isi."','".$tgl."','".$idk."')";
 				$sql = $koneksi->prepare($query);
