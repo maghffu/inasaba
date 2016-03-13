@@ -24,6 +24,7 @@ $result = $sql->fetchAll();
 	<div class="row" style="margin:0px;">
 		<div class="col-md-8">
 			<h1>Selamat datang administrator</h1>
+			<a href="login_proses.php?op=proses" class="btn btn-danger">Logout</a>
 			<hr>
 			<div class="panel panel-primary">
 				<div class="panel-heading"><i class="glyphicon glyphicon-plus"></i>Tambah Artikel</div>
@@ -104,7 +105,7 @@ $result = $sql->fetchAll();
 					<tr>
 						<td><?php echo $n;$n++; ?></td>
 						<td><?php echo substr($r['judul_artikel'], 0,10)."..."; ?></td>
-						<td><?php echo substr($r['isi'], 0,10)."..." ?></td>
+						<td><?php echo substr( htmlentities($r['isi']) , 0,10)."..." ?></td>
 						<td><?php echo $r['judul_kategori']; ?></td>
 					</tr>
 				<?
@@ -115,7 +116,7 @@ $result = $sql->fetchAll();
 </div>
 
 
-<a href="login_proses.php?op=proses">Logout</a>
+
 </body>
 </html>
 <script>
