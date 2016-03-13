@@ -84,7 +84,7 @@ foreach ($result as $data) {
       <div class="panel panel-primary">
         <div class="panel-heading"><?php echo $data['judul_artikel'] ?></div>
         <div class="panel-body">
-            <?php echo substr($data['isi'], 0,150)."... <a href='#'>Baca Selengkapnya.</a>"; ?>
+            <?php echo substr($data['isi'], 0,150)."... <a href='index.php?hal=view&id=".$data['id']."'>Baca Selengkapnya.</a>"; ?>
             <br>
             
         </div>

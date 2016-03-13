@@ -61,17 +61,17 @@ $hal = isset($_GET['hal'])?$_GET['hal']:"beranda";
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-          <form class="navbar-form navbar-left tengah" role="search">
+          <form class="navbar-form navbar-left tengah" action="index.php?hal=cari" method="POST" role="search">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Cari Tutorial">
+              <input type="text" class="form-control" name="query" placeholder="Cari Tutorial">
             </div>
             <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></button>
           </form>
 
           <ul class="nav navbar-nav navbar-right">
             <li><a href="index.php"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-file"></i> Artikel</a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-phone-alt"></i> Kontak Kami</a></li>
+            <li><a href="index.php?hal=art"><i class="glyphicon glyphicon-file"></i> Artikel</a></li>
+            <li><a href="index.php?hal=kontak"><i class="glyphicon glyphicon-phone-alt"></i> Kontak Kami</a></li>
             <li><a href="#"><i class="glyphicon glyphicon-lock"></i> Masuk</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -86,6 +86,18 @@ switch ($hal) {
     break;
   case 'kategori':
     include 'kategori.php';
+    break;
+  case 'view':
+    include 'view_artikel.php';
+    break;
+  case 'art':
+    include 'artikel.php';
+    break;
+  case 'kontak':
+    include 'kontak.php';
+    break;
+  case 'cari':
+    include 'cari_artikel.php';
     break;
   
   default:

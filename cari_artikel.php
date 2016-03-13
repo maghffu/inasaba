@@ -1,23 +1,19 @@
 <?php 
-$id = $_GET['id'];
-$query = "select * from kategori where id_kategori='".$id."'";
-$sql = $koneksi->prepare($query);
-$sql->execute();
-$result = $sql->fetch(PDO::FETCH_ASSOC); 
-
-?>
+	$q = $_POST['query'];
+ ?>
+ <br>
 <div class="konten">
 	<div class="col-md-12">
-		<h1><?php echo $result['judul_kategori'] ?></h1>
-		<p style="color:#bbb"><?php echo $result['keterangan'] ?></p>
+		<h4>Hasil Pencarian : "<?php echo $q ?>" </h4>
 		<hr>
 	</div>
 </div>
-
 <div class="col-md-12">
 	<div class="col-md-8" style="border-right:1px solid #ddd; margin-bottom:20px;">
 		<?php 
-		$query = "select *, DATE_FORMAT(tanggal_posting,'%d %M %Y') as tgl from artikel where id_kategori='".$id."'";
+		$query = "select *, DATE_FORMAT(tanggal_posting,'%d %M %Y') as tgl 
+			from artikel join kategori on artikel.id_kategori = kategori.id_kategori
+			where judul_artikel like '%".$q."%' or judul_kategori like '%".$q."%' ";
 		$sql = $koneksi->prepare($query);
 		$sql->execute();
 		$result = $sql->fetchAll(); 
@@ -65,4 +61,3 @@ $result = $sql->fetch(PDO::FETCH_ASSOC);
 		</div>
 	</div>
 </div>
-
