@@ -79,9 +79,11 @@ $result = $sql->fetchAll();
 			$jud = $_POST['judul'];
 			$isi = $_POST['isi'];
 			$tgl =  date('Y-m-d h:i:s');
-			$query = "insert into artikel values('','".$jud."','".$isi."','".$tgl."','".$idk."')";
-			$sql = $koneksi->prepare($query);
-			$sql->execute();
+			if (!empty($jud) && !empty($isi) ) {
+				$query = "insert into artikel values('','".$jud."','".$isi."','".$tgl."','".$idk."')";
+				$sql = $koneksi->prepare($query);
+				$sql->execute();
+			}
 			$query = "select * from artikel join kategori on artikel.id_kategori = kategori.id_kategori";
 			$sql = $koneksi->prepare($query);
 			$sql->execute();
